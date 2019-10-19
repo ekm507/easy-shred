@@ -1,12 +1,27 @@
 
 import os
 
+# shred a file and delete it
 def shred(filename):
+    # get file size
     size = os.stat(filename).st_size
 
-    for i in range(size):
-        writeInFile(filename, 0)
+    #open the file as write+binary
+    f = open(filename, 'w+b')
 
-    print(size)
+    # array to be written to the file.
+    # a filesize length array of zeros.
+    byte_arr = [0] * size
+
+    # byte array, so it can be written to file
+    binary_format = bytearray(byte_arr)
+
+    # shred the file
+    f.write(binary_format)
+
+    # close the file so the os can remove it
+    f.close()
+
+    # remove the shredded file's name.
     os.remove(filename)
 
