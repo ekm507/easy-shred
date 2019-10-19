@@ -1,10 +1,11 @@
 
-import os
+
+from os import stat, remove
 
 # shred a file and delete it
 def shred(filename):
     # get file size
-    size = os.stat(filename).st_size
+    size = stat(filename).st_size
 
     #open the file as write+binary
     f = open(filename, 'w+b')
@@ -23,5 +24,5 @@ def shred(filename):
     f.close()
 
     # remove the shredded file's name.
-    os.remove(filename)
+    remove(filename)
 
