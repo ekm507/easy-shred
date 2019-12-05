@@ -2,8 +2,11 @@
 
 from os import stat, remove
 
+import sys
+
 # shred a file and delete it
 def shred(filename):
+
     # get file size
     size = stat(filename).st_size
 
@@ -25,4 +28,5 @@ def shred(filename):
 
     # remove the shredded file's name.
     remove(filename)
-
+for filename in sys.argv[1:] :
+    shred(filename)
